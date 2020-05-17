@@ -1,14 +1,6 @@
 import fs from "fs";
-
-/* Enum - Enumeration: Used to let other engineers know that this is a
-   collection of closely related values.
-   We only use enums when we know all the possible values while we are writing
-   our code. */
-   enum MatchResult {
-    HomeWin = "H",
-    AwayWin = "A",
-    Draw = "D"
-}
+import { dateStringToDate } from "./utils";
+import { MatchResult } from "./MatchResult";
 
 export class CsvFileReader {
     data: string[][] = [];
@@ -20,8 +12,18 @@ export class CsvFileReader {
             .readFileSync(this.filename, { encoding: "utf-8" })
             .split("\n")
             .map((row: string): string[] => row.split(","))
-            .forEach((row: string[]) => {
-                row[0] = new Date(row[0]);
-            })
+            .map((row: string[]): any => {
+                return [
+                    dateStringToDate(row[0]),
+                    row[1],
+                    row[2],
+                    parseInt(row[3]),
+                    parseInt(row[4]),
+                    /* Type assertion. Consider this value as one of the
+                       possible values of MatchResult ('H', 'A', 'D')  */
+                    row[5] as MatchResult,
+                    row[6]
+                ];
+            });
     }
 }
