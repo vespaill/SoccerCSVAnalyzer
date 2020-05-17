@@ -1,17 +1,14 @@
 import fs from "fs";
-import { MatchResult } from "./MatchResult";
 
-
-/* Tuple declaration */
-type MatchData = [Date, string, string, number, number, MatchResult, string];
-
-export abstract class CsvFileReader {
-    data: MatchData[] = [];
+/* <T> is a reference to a generic type */
+export abstract class CsvFileReader<T> {
+    data: T[] = [];
 
     /* Declare class member 'filename' */
     /* automatically initialized with constructor paramter */
     constructor(public filename: string) {}
-    abstract mapRow(row: string[]): MatchData;
+
+    abstract mapRow(row: string[]): T;
 
     read(): void {
         this.data = fs
