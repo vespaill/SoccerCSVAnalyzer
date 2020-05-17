@@ -17,3 +17,6 @@
         "start:run": "nodemon build/index.js",
         "start": "concurrently npm:start:*"
     },
+
+#### Install the type definition file for Node. This is required if we're using TypeScript and also want to use anything from the Node standard library.
+    npm install #types/node
