@@ -5,12 +5,28 @@ const matches = fs
     .split("\n")
     .map((row: string): string[] => row.split(","));
 
+/* Enum - Enumeration: Used to let other engineers know that this is a
+   collection of closely related values. */
+enum MatchResult {
+    HomeWin = "H",
+    AwayWin = "A",
+    Draw = "D"
+};
+
+// const printMatchResult = (): MatchResult => {
+//     if (match[5] === "H") {
+//         return MatchResult.HomeWin;
+//     }
+
+//     return MatchResult.AwayWin;
+// }
+
 let manUnitedWins = 0;
 
 for (let match of matches) {
     if (
-        (match[1] === "Man United" && match[5] === "H") ||
-        (match[2] === "Man United" && match[5] === "A")
+        (match[1] === "Man United" && match[5] === MatchResult.HomeWin) ||
+        (match[2] === "Man United" && match[5] === MatchResult.AwayWin)
     ) {
         manUnitedWins++;
     }
