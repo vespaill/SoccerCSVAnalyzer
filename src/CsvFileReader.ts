@@ -1,8 +1,11 @@
 import fs from "fs";
 
+/**
+ * Class for reading entries from a CSV file and store as rows in an array.
+ */
 export class CsvFileReader {
     /**
-     * An 2D array of strings where the 1st dimension specifies a text line from
+     * A 2D array of strings where the 1st dimension specifies a text line from
      * a CSV file and the 2nd dimension specifies one of the comma separated
      * value from that line.
      */
